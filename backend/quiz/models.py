@@ -20,7 +20,7 @@ class User(models.Model):
     set_attempted = models.IntegerField(null=False)
 
 class UserAnswers(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField(null=False)
     question_number = models.ForeignKey(Question, on_delete=models.CASCADE)
     set_attempted = models.IntegerField(null=False)
     option_click_time = models.DurationField()
