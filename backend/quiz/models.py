@@ -23,7 +23,7 @@ class User(models.Model):
     set_attempted = models.IntegerField(null=False)
 
 
-class UserAnswers(models.Model):
+class PromptedAnswers(models.Model):
     user_id = models.IntegerField(null=False)
     action = models.CharField(
         choices=[
@@ -40,8 +40,82 @@ class UserAnswers(models.Model):
         max_length=10,
     )
     page = models.CharField(null=False, max_length=200, default="Null")
-    time = models.TimeField(default='00:00')
+    time = models.TimeField(default='00:00:00')
 
+class PromptedAnswers(models.Model):
+    user_id = models.IntegerField(null=False)
+    action = models.CharField(
+        choices=[
+            ("A", "A"),
+            ("B", "B"),
+            ("C", "C"),
+            ("D", "D"),
+            ("Start", "Start"),
+            ("End", "End"),
+            ("Prompt", "Prompt"),
+            ("Continue", "Continue"),
+        ],
+        default="Null",
+        max_length=10,
+    )
+    page = models.CharField(null=False, max_length=200, default="Null")
+    time = models.TimeField(default='00:00:00')
+
+class PromptedAnswers(models.Model):
+    user_id = models.IntegerField(null=False)
+    action = models.CharField(
+        choices=[
+            ("A", "A"),
+            ("B", "B"),
+            ("C", "C"),
+            ("D", "D"),
+            ("Start", "Start"),
+            ("End", "End"),
+            ("Prompt", "Prompt"),
+            ("Continue", "Continue"),
+        ],
+        default="Null",
+        max_length=10,
+    )
+    page = models.CharField(null=False, max_length=200, default="Null")
+    time = models.TimeField(default='00:00:00')
+
+class UnpromptedAnswers(models.Model):
+    user_id = models.IntegerField(null=False)
+    action = models.CharField(
+        choices=[
+            ("A", "A"),
+            ("B", "B"),
+            ("C", "C"),
+            ("D", "D"),
+            ("Start", "Start"),
+            ("End", "End"),
+            ("Prompt", "Prompt"),
+            ("Continue", "Continue"),
+        ],
+        default="Null",
+        max_length=10,
+    )
+    page = models.CharField(null=False, max_length=200, default="Null")
+    time = models.TimeField(default='00:00:00')
+
+class NoAssistanceAnswers(models.Model):
+    user_id = models.IntegerField(null=False)
+    action = models.CharField(
+        choices=[
+            ("A", "A"),
+            ("B", "B"),
+            ("C", "C"),
+            ("D", "D"),
+            ("Start", "Start"),
+            ("End", "End"),
+            ("Continue", "Continue"),
+        ],
+        default="Null",
+        max_length=10,
+    )
+    page = models.CharField(null=False, max_length=200, default="Null")
+    time = models.TimeField(default='00:00:00')
 
 # class Prompted(models.Model):
 #     question_number = models.AutoField(primary_key=True)
