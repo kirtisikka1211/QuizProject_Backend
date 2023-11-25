@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import *
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('id','question','op1','op2','op3','op4','ans','hint')
+    list_display = ('id','question','op1','op2','op3','op4','ans','actual_suggestion', 'misleading_suggestion')
 admin.site.register(Question, QuestionAdmin)
 
 class UserAdmin(admin.ModelAdmin):

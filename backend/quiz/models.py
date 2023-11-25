@@ -5,16 +5,15 @@ from django.db.models.deletion import CASCADE
 
 
 class Question(models.Model):
+    id = models.AutoField(primary_key= True)
     question = models.TextField(null=True)
     op1 = models.CharField(max_length=200, null=True)
     op2 = models.CharField(max_length=200, null=True)
     op3 = models.CharField(max_length=200, null=True)
     op4 = models.CharField(max_length=200, null=True)
     ans = models.CharField(max_length=200, null=True)
-    hint = models.TextField(null=True)
-
-    # def __str__(self):
-    #     return self.question
+    actual_suggestion = models.TextField(null=True)
+    misleading_suggestion= models.TextField(null=True)
 
 
 class User(models.Model):
