@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 
 class UserAnswersAdmin(admin.ModelAdmin):
-    list_display = ('user_id','question_number','set_attempted','option_click_time','help_button_click_time','continue_button_click_time','time_spent_on_question','option_chosen','is_correct')
+    list_display = ('user_id','action','page','time')
 admin.site.register(UserAnswers, UserAnswersAdmin)
 # class PromptedAdmin(admin.ModelAdmin):
 #     list_display = ('question_number','option_click_time','help_button_click_time','continue_button_click_time','time_spent_on_question')
