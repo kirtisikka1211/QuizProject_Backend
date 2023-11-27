@@ -5,11 +5,31 @@ from .forms import *
 from .models import *
 from django.http import HttpResponse
 from rest_framework import viewsets
-from .serializers import QuestionSerializer
+from .serializers import *
 
 class QuestionViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class PromptedAnswersViewSet(viewsets.ModelViewSet):
+    queryset = PromptedAnswers.objects.all()
+    serializer_class = PromptedAnswersSerializer
+
+class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
+    queryset = UnpromptedAnswers.objects.all()
+    serializer_class = UnpromptedAnswersSerializer
+
+class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):
+    queryset = NoAssistanceAnswers.objects.all()
+    serializer_class = NoAssistanceAnswersSerializer
+
+
+
+
 
 # # Create your views here.
 # def home(request):

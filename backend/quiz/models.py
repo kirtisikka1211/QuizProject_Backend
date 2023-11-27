@@ -2,8 +2,6 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 
 # create models for a quiz app
-
-
 class Question(models.Model):
     id = models.AutoField(primary_key= True)
     question = models.TextField(null=True)
@@ -15,50 +13,10 @@ class Question(models.Model):
     actual_suggestion = models.TextField(null=True)
     misleading_suggestion= models.TextField(null=True)
 
-
 class User(models.Model):
     roll_no = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     set_attempted = models.IntegerField(null=False)
-
-
-class PromptedAnswers(models.Model):
-    user_id = models.IntegerField(null=False)
-    action = models.CharField(
-        choices=[
-            ("A", "A"),
-            ("B", "B"),
-            ("C", "C"),
-            ("D", "D"),
-            ("Start", "Start"),
-            ("End", "End"),
-            ("Prompt", "Prompt"),
-            ("Continue", "Continue"),
-        ],
-        default="Null",
-        max_length=10,
-    )
-    page = models.CharField(null=False, max_length=200, default="Null")
-    time = models.TimeField(default='00:00:00')
-
-class PromptedAnswers(models.Model):
-    user_id = models.IntegerField(null=False)
-    action = models.CharField(
-        choices=[
-            ("A", "A"),
-            ("B", "B"),
-            ("C", "C"),
-            ("D", "D"),
-            ("Start", "Start"),
-            ("End", "End"),
-            ("Prompt", "Prompt"),
-            ("Continue", "Continue"),
-        ],
-        default="Null",
-        max_length=10,
-    )
-    page = models.CharField(null=False, max_length=200, default="Null")
-    time = models.TimeField(default='00:00:00')
 
 class PromptedAnswers(models.Model):
     user_id = models.IntegerField(null=False)
