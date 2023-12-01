@@ -7,7 +7,7 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'roll_no','name','set_attempted')
+    list_display = ('id', 'uid')
 admin.site.register(User, UserAdmin)
 
 class PromptedAnswersAdmin(admin.ModelAdmin):
