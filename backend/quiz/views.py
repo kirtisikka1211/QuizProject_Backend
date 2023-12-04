@@ -22,6 +22,14 @@ class PromptedAnswersViewSet(viewsets.ModelViewSet):
 class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
     queryset = UnpromptedAnswers.objects.all()
     print(queryset)
+    users= User.objects.all()
+    for user in users:
+        for entries in queryset:
+            if (user.uid == entries.user_id):
+                 print(user.id)
+                 entries.uid_no= int(user.id)
+                 queryset.update(uid_no=entries.uid_no)
+                 serializer_class = UnpromptedAnswersSerializer
     serializer_class = UnpromptedAnswersSerializer
 
 class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):

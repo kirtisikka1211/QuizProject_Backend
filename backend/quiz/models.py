@@ -14,6 +14,7 @@ class Question(models.Model):
     misleading_suggestion= models.TextField(null=True)
 
 class User(models.Model):
+    id = models.AutoField(primary_key= True)
     uid = models.CharField(max_length=200, unique=True)
 
 class PromptedAnswers(models.Model):
