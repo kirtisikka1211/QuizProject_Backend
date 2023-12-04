@@ -36,7 +36,8 @@ class PromptedAnswers(models.Model):
     time = models.TimeField(default='00:00:00')
 
 class UnpromptedAnswers(models.Model):
-    user_id = models.IntegerField(null=False)
+    user_id = models.CharField(null=False, max_length=200)
+    uid_no = models.IntegerField(default=0)
     action = models.CharField(
         choices=[
             ("A", "A"),

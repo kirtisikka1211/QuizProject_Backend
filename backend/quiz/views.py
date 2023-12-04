@@ -21,6 +21,7 @@ class PromptedAnswersViewSet(viewsets.ModelViewSet):
 
 class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
     queryset = UnpromptedAnswers.objects.all()
+    print(queryset)
     serializer_class = UnpromptedAnswersSerializer
 
 class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):

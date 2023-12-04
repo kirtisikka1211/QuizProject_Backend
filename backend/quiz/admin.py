@@ -15,8 +15,8 @@ class PromptedAnswersAdmin(admin.ModelAdmin):
 admin.site.register(PromptedAnswers, PromptedAnswersAdmin)
 
 class UnpromptedAnswersAdmin(admin.ModelAdmin):
-    list_display = ('user_id','action','page','time')
-admin.site.register(UnpromptedAnswers, PromptedAnswersAdmin)
+    list_display = ('user_id', 'uid_no', 'action','page','time')
+admin.site.register(UnpromptedAnswers, UnpromptedAnswersAdmin)
 
 class NoAssistanceAnswersAdmin(admin.ModelAdmin):
     list_display = ('user_id','action','page','time')
