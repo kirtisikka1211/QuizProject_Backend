@@ -17,6 +17,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class PromptedAnswersViewSet(viewsets.ModelViewSet):
     queryset = PromptedAnswers.objects.all()
+    users= User.objects.all()
+    for entries in queryset:
+        for user in users:
+            if (entries.user_id==user.uid):
+                new_set= PromptedAnswers.objects.filter(user_id=entries.user_id)
+                entries.uid_no= int(user.id)
+                new_set.update(uid_no=entries.uid_no)
+                serializer_class = PromptedAnswersSerializer
     serializer_class = PromptedAnswersSerializer
 
 class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
@@ -33,4 +41,12 @@ class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
 
 class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):
     queryset = NoAssistanceAnswers.objects.all()
+    users= User.objects.all()
+    for entries in queryset:
+        for user in users:
+            if (entries.user_id==user.uid):
+                new_set= NoAssistanceAnswers.objects.filter(user_id=entries.user_id)
+                entries.uid_no= int(user.id)
+                new_set.update(uid_no=entries.uid_no)
+                serializer_class = NoAssistanceAnswersSerializer
     serializer_class = NoAssistanceAnswersSerializer

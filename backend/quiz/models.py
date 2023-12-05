@@ -18,7 +18,8 @@ class User(models.Model):
     uid = models.CharField(max_length=200, unique=True)
 
 class PromptedAnswers(models.Model):
-    user_id = models.IntegerField(null=False)
+    user_id = models.CharField(null=False, max_length=200)
+    uid_no = models.IntegerField(default=0)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -57,7 +58,8 @@ class UnpromptedAnswers(models.Model):
     time = models.TimeField(default='00:00:00')
 
 class NoAssistanceAnswers(models.Model):
-    user_id = models.IntegerField(null=False)
+    user_id = models.CharField(null=False, max_length=200)
+    uid_no = models.IntegerField(default=0)
     action = models.CharField(
         choices=[
             ("A", "A"),
