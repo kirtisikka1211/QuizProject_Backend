@@ -21,15 +21,14 @@ class PromptedAnswersViewSet(viewsets.ModelViewSet):
 
 class UnpromptedAnswersViewSet(viewsets.ModelViewSet):
     queryset = UnpromptedAnswers.objects.all()
-    print(queryset)
     users= User.objects.all()
-    for user in users:
-        for entries in queryset:
-            if (user.uid == entries.user_id):
-                 print(user.id)
-                 entries.uid_no= int(user.id)
-                 queryset.update(uid_no=entries.uid_no)
-                 serializer_class = UnpromptedAnswersSerializer
+    for entries in queryset:
+        for user in users:
+            if (entries.user_id==user.uid):
+                new_set= UnpromptedAnswers.objects.filter(user_id=entries.user_id)
+                entries.uid_no= int(user.id)
+                new_set.update(uid_no=entries.uid_no)
+                serializer_class = UnpromptedAnswersSerializer
     serializer_class = UnpromptedAnswersSerializer
 
 class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):
