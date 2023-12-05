@@ -25,8 +25,32 @@ SECRET_KEY = 'django-insecure-nz$^69d_m9^n#aq=wbeg*9!ou@_l)e&30rhzi4p4ls!^$(ekgi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CORS_ALLOW_CREDENTIALS = True
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# Allow specific headers
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'content-disposition',
+    'content-length',
+]
+
+# Allow specific methods
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 # Application definition
 
