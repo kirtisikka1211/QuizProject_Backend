@@ -1,9 +1,12 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 
-# create models for a quiz app
+class User(models.Model):
+    roll_no = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=254)
+
 class Question(models.Model):
-    id = models.AutoField(primary_key= True)
     question = models.TextField(null=True)
     op1 = models.CharField(max_length=200, null=True)
     op2 = models.CharField(max_length=200, null=True)
@@ -13,13 +16,8 @@ class Question(models.Model):
     actual_suggestion = models.TextField(null=True)
     misleading_suggestion= models.TextField(null=True)
 
-class User(models.Model):
-    id = models.AutoField(primary_key= True)
-    uid = models.CharField(max_length=200, unique=True)
-
 class PromptedAnswers(models.Model):
-    user_id = models.CharField(null=False, max_length=200)
-    uid_no = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -34,12 +32,11 @@ class PromptedAnswers(models.Model):
         default="Null",
         max_length=10,
     )
-    page = models.CharField(null=False, max_length=200, default="Null")
+    page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default='00:00:00')
 
 class UnpromptedAnswers(models.Model):
-    user_id = models.CharField(null=False, max_length=200)
-    uid_no = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -54,12 +51,11 @@ class UnpromptedAnswers(models.Model):
         default="Null",
         max_length=10,
     )
-    page = models.CharField(null=False, max_length=200, default="Null")
+    page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default='00:00:00')
 
 class NoAssistanceAnswers(models.Model):
-    user_id = models.CharField(null=False, max_length=200)
-    uid_no = models.IntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -73,5 +69,5 @@ class NoAssistanceAnswers(models.Model):
         default="Null",
         max_length=10,
     )
-    page = models.CharField(null=False, max_length=200, default="Null")
+    page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default='00:00:00')
