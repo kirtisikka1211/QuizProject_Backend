@@ -17,7 +17,7 @@ class Question(models.Model):
     misleading_suggestion= models.TextField(null=True)
 
 class PromptedAnswers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=200, null=True)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -36,7 +36,7 @@ class PromptedAnswers(models.Model):
     time = models.TimeField(default='00:00:00')
 
 class UnpromptedAnswers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=200, null=True)
     action = models.CharField(
         choices=[
             ("A", "A"),
@@ -55,7 +55,7 @@ class UnpromptedAnswers(models.Model):
     time = models.TimeField(default='00:00:00')
 
 class NoAssistanceAnswers(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=200, null=True)
     action = models.CharField(
         choices=[
             ("A", "A"),
