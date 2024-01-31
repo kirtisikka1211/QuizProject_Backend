@@ -30,6 +30,38 @@ services:
     restart: always
     networks:
       - main
+  quizapp:
+    container_name: hci_normal
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
+    networks:
+      - main
+
+  quizapp-noAssistance:
+    container_name: hci_noAssistance
+    build:
+      context: ./frontend1
+    ports:
+      - "3001:3001"
+    depends_on:
+      - web
+    networks:
+      - main
+
+  quizapp-prompted:
+    container_name: hci_prompted
+    build:
+      context: ./frontend2
+    ports:
+      - "3001:3001"
+    depends_on:
+      - web
+    networks:
+      - main
   
 volumes:
 networks:
