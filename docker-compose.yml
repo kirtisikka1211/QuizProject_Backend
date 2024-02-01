@@ -5,10 +5,10 @@ services:
   web:
     container_name: django
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - .:/usr/src/app:rw
+      - ./backend:/usr/src/app:rw
     ports:
       - "8000:8000"
 
@@ -16,6 +16,39 @@ services:
     networks:
       - main
   
+  quizapp:
+    container_name: hci_normal
+    build:
+      context: ./quizapp/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
+    networks:
+      - main
+
+  quizapp-noAssistance:
+    container_name: hci_noAssistance
+    build:
+      context: ./quizapp-noAssistance/frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - web
+    networks:
+      - main
+
+  quizapp-prompted:
+    container_name: hci_prompted
+    build:
+      context: ./quizapp-prompted/frontend
+    ports:
+      - "3002:3002"
+    depends_on:
+      - web
+    networks:
+      - main
+
   nginx:
     container_name: nginx_hci
     build:
@@ -27,39 +60,10 @@ services:
       - 80:80
     depends_on:
       - web
+      - quizapp
+      - quizapp-noAssistance
+      - quizapp-prompted
     restart: always
-    networks:
-      - main
-  quizapp:
-    container_name: hci_normal
-    build:
-      context: ./frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - web
-    networks:
-      - main
-
-  quizapp-noAssistance:
-    container_name: hci_noAssistance
-    build:
-      context: ./frontend1
-    ports:
-      - "3001:3001"
-    depends_on:
-      - web
-    networks:
-      - main
-
-  quizapp-prompted:
-    container_name: hci_prompted
-    build:
-      context: ./frontend2
-    ports:
-      - "3001:3001"
-    depends_on:
-      - web
     networks:
       - main
   
