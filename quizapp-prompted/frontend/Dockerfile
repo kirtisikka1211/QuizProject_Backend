@@ -1,6 +1,6 @@
 FROM node:18.2.0
 
-WORKDIR /usr/src/frontend1
+WORKDIR /usr/src/frontend2
 
 COPY package*.json ./
 
@@ -10,6 +10,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3001
+EXPOSE 3002
 
 CMD ["npm", "start"]
