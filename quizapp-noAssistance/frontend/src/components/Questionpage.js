@@ -13,11 +13,11 @@ const Questionpage = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [resetHint, setResetHint] = useState(false);
+  const [timer, setTimer] = useState("0:0");
   
   const location = useLocation();
-  const {user_id}=location.state;
-  const user=JSON.stringify(user_id);
-  console.log(user_id);
+  const queryParams = new URLSearchParams(location.search);
+  const roll_no = queryParams.get("roll_no");
   const dateUnix=Date.now();
   const date= new Date(dateUnix)
   const hr = ('0' + date.getHours()).slice(-2);
@@ -69,9 +69,9 @@ const Questionpage = () => {
     }
     const pageno=JSON.stringify(currentQuestionIndex+1);
     
-    const details={"user_id":user,"uid_no":0,"action":va,"page":pageno,"time":curtime}
+    const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
     // console.log(details);
-    axios.post('http://127.0.0.1:8080/api/noassistance/',details)
+    axios.post('http://127.0.0.1:8080/api/unprompted/',details)
     .then(response => {
       console.log(response.data); 
       setSelectedOption(option);
@@ -80,7 +80,6 @@ const Questionpage = () => {
       console.error('Error while making the Axios request:', error);
     });
     setSelectedOption(option);
-    
   };
 
   
@@ -88,7 +87,7 @@ const Questionpage = () => {
   const isContinueDisabled = !selectedOption || !question;
   const handleContinue = () => {
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8080/api/noassistance/',{"user_id":user,"uid_no":0,"action":"Continue","page":pageno,"time":curtime})
+    axios.post('http://127.0.0.1:8080/api/unprompted/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })
@@ -107,23 +106,24 @@ const Questionpage = () => {
     }
   };
   
-  const handleTimeOut = () => {
-      // console.log(currentQuestionIndex);
-    const nextQuestionIndex = currentQuestionIndex + 1;
-    // console.log(nextQuestionIndex);
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
-      setSelectedOption(null);
-      setResetHint((prev) => !prev);
-    } else {
-      console.log("End of questions");
+  const handleSubmit = () => {
+    const pageno=JSON.stringify(currentQuestionIndex+1)
+    axios.post('http://127.0.0.1:8080/api/unprompted/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
+    .then(response => {
+      console.log(response.data); 
+    })
+    .catch(error => {
+      console.error('Error while making the Axios request:', error);
+    });
+    navigate("/thankyou")
+    
     }
-  };
+
 
   return (
-    <div className="h-screen w-screen divide-y divide-solid">
-      <div className="h-4/5 flex">
-        <div className="w-2/3 px-4">
+    <div className="h-screen w-screen sm:w-full divide-y divide-solid overflow-y-auto">
+      <div className="h-4/5 flex flex-col lg:flex-row overflow-y-auto">
+        <div className="w-full px-4 overflow-y-auto ">
           <div className="box-border p-4 text-lg text-blue-texts py-10">
             Q.{currentQuestionIndex + 1} {question && question.question}
           </div>
@@ -144,17 +144,7 @@ const Questionpage = () => {
               ))}
           </div>
         </div>
-        {/* <div className="w-1/3 bg-blue-50"> */}
-          {/* <div className="h-10 bg-blue-texts w-fill flex justify-center text-white">
-            AI Assistance
-          </div> */}
-          {/* <div
-            className="bg-blue-50 p-4"
-            style={{ whiteSpace: "break-spaces" }}
-          >
-            <Chat text={question && question.misleading_suggestion} resetHint={resetHint} />
-          </div> */}
-        {/* </div> */}
+      
       </div>
       <div className="h-1/5 px-12">
         <div className="h-5"></div>
@@ -191,7 +181,7 @@ const Questionpage = () => {
                     className={`text-white bg-blue-texts rounded-full p-4 w-32 justify-items-end ${
                       isContinueDisabled ? "bg-gray-400 cursor-not-allowed" : ""
                     }`}
-                    onClick={handleContinue}
+                    onClick={handleSubmit}
                     disabled={isContinueDisabled}
                   >
                     Submit
