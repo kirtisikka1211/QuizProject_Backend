@@ -29,7 +29,7 @@ const BorderForm = () => {
   })
   console.log(formData);
     navigate(`/Welcome?roll_no=${formData.roll_no}`);
-    
+
   };
 
   return (
@@ -101,9 +101,9 @@ const BorderForm = () => {
           Submit
         </button>
       </form>
-      
+
     </div>
-    
+
   );
 };
 
