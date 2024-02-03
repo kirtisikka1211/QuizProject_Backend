@@ -21,7 +21,7 @@ services:
     build:
       context: ./quizapp/frontend
     ports:
-      - "8844:3000"
+      - "8844:8844"
     depends_on:
       - web
     networks:
@@ -32,7 +32,7 @@ services:
     build:
       context: ./quizapp-noAssistance/frontend
     ports:
-      - "8846:3001"
+      - "8846:8846"
     depends_on:
       - web
     networks:
@@ -43,7 +43,7 @@ services:
     build:
       context: ./quizapp-prompted/frontend
     ports:
-      - "8848:3002"
+      - "8848:8848"
     depends_on:
       - web
     networks:

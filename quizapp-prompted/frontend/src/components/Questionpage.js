@@ -28,7 +28,7 @@ const Questionpage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/questions/"
+          "http://localhost/api/questions/"
         );
         if (
           response.data &&
@@ -56,7 +56,7 @@ const Questionpage = () => {
     setIsChat(true);
     setIsButtonVis(false);
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/prompted/',{"user":roll_no,"action":"Prompt","page":pageno,"time":curtime})
+    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"Prompt","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })
@@ -82,7 +82,7 @@ const Questionpage = () => {
     
     const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
     // console.log(details);
-    axios.post('http://127.0.0.1:8000/api/prompted/',details)
+    axios.post('http://localhost/api/prompted/',details)
     .then(response => {
       console.log(response.data); 
       setSelectedOption(option);
@@ -97,7 +97,7 @@ const Questionpage = () => {
 
   const handleContinue = () => {
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/prompted/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
+    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })
@@ -120,7 +120,7 @@ const Questionpage = () => {
 
   const handleSubmit = () => {
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/prompted/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
+    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })
