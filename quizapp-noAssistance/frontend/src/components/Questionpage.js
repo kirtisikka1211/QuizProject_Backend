@@ -30,7 +30,7 @@ const Questionpage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/questions/"
+          "http://127.0.0.1:8000/api/questions/"
         );
         if (
           response.data &&
@@ -71,7 +71,7 @@ const Questionpage = () => {
     
     const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
     // console.log(details);
-    axios.post('http://127.0.0.1:8080/api/noassistance/',details)
+    axios.post('http://127.0.0.1:8000/api/noassistance/',details)
     .then(response => {
       console.log(response.data); 
       setSelectedOption(option);
@@ -87,7 +87,7 @@ const Questionpage = () => {
   const isContinueDisabled = !selectedOption || !question;
   const handleContinue = () => {
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8080/api/noassistance/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
+    axios.post('http://127.0.0.1:8000/api/noassistance/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })
@@ -108,7 +108,7 @@ const Questionpage = () => {
   
   const handleSubmit = () => {
     const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8080/api/noassistance/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
+    axios.post('http://127.0.0.1:8000/api/noassistance/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
     .then(response => {
       console.log(response.data); 
     })

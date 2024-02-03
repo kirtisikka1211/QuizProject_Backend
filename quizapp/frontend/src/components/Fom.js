@@ -20,7 +20,7 @@ const BorderForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8080/api/users/',formData)
+    axios.post('http://127.0.0.1:8000/api/users/',formData)
   .then(response => {
     console.log(response.data); 
   })

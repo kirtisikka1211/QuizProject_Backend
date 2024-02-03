@@ -29,7 +29,7 @@ const handleStart = () => {
   
   navigate(`/question?roll_no=${roll_no}`);
   
-  axios.post('http://127.0.0.1:8080/api/prompted/',{"user": roll_no,"action":"Start","page":0,"time":curtime})
+  axios.post('http://127.0.0.1:8000/api/prompted/',{"user": roll_no,"action":"Start","page":0,"time":curtime})
   .then(response => {
     console.log(response.data); 
   })

@@ -2,11 +2,12 @@
 
 # This script is used to start the container for django development
 
-APP_PORT=${PORT:-8000}
+APP_PORT=${PORT:-8842}
 
 ## make migrations and migrate for postgres
 python3 manage.py makemigrations
 python3 manage.py migrate
+python3 manage.py collectstatic --noinput 
 
 # create superuser
 # python3 manage.py createsuperuser --noinput || true

@@ -31,6 +31,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
 
 )
 
@@ -145,6 +147,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # STATIC_URL = 'static/'
+MEDIA_URL="/media/"
+MEDIA_ROOT= "/www/app/media/"
+STATIC_ROOT= "/www/app/staticfiles/"
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[BASE_DIR/'static']
 # Default primary key field type
