@@ -1,5 +1,4 @@
-# QuizProject_Backend
-`# HCI
+# HCI
 
 
 ## Prerequisites
