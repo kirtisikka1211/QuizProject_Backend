@@ -18,38 +18,42 @@
 
       ```bash
       cd QuizProject_Backend
-      ```
+      
 3.  Run the following command to start the application:
 
       ```bash
       docker-compose up -d --build
-      ```
+      
 4.  URls for backend 
       ```bash 
       http://localhost
 
-      ```
+      
 5.  URls 
-    - hci_noAssistance
+ - hci_noAssistance
       ```bash
       http://localhost:8846/
       ```
-   - hci_withAssistance
-         ```bash
-        http://localhost:8844/
-         ```
-   - hci_prompted
-         ```bash
-         http://localhost:8848/
+ - hci_prompted
 
-   
-                ```
+   ```bash
+      http://localhost:8848/
+      ```
+
+- hci
+
+  ```bash
+     http://localhost:8844/
+  ```
+
+
+               
       
 6.  To stop the application, run the following command:
    
-         ```bash
-         docker-compose down
-         ```
+   ```bash
+      docker-compose down
+   ```
 
             
 
