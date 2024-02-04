@@ -154,7 +154,7 @@ const Questionpage = () => {
         </div>
         <div className="flex justify-center">
           <div className="text-blue-texts">
-            Time remaining
+            Time remaining :&nbsp;
             <Timer />
             <div className="flex justify-normal items-center h-20">
               <div>
