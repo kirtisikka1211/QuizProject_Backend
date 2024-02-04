@@ -3,7 +3,7 @@
 
   const useTimer = () => {
     const navigate = useNavigate();
-    const [timeLeft, setTimeLeft] = useState(300);
+    const [timeLeft, setTimeLeft] = useState(1800);
     
 
     useEffect(() => {
