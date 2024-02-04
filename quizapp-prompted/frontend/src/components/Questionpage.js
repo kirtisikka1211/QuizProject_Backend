@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-tailwind/react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Timer from "./Timer";
 import Chat from "./chat";
@@ -17,19 +17,17 @@ const Questionpage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const roll_no = queryParams.get("roll_no");
-  const dateUnix=Date.now();
-  const date= new Date(dateUnix)
-  const hr = ('0' + date.getHours()).slice(-2);
-  const min = ('0' + date.getMinutes()).slice(-2); 
-  const sec = ('0' + date.getSeconds()).slice(-2); 
+  const dateUnix = Date.now();
+  const date = new Date(dateUnix);
+  const hr = ("0" + date.getHours()).slice(-2);
+  const min = ("0" + date.getMinutes()).slice(-2);
+  const sec = ("0" + date.getSeconds()).slice(-2);
   const curtime = `${hr}:${min}:${sec}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost/api/questions/"
-        );
+        const response = await axios.get("http://localhost/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
@@ -55,55 +53,59 @@ const Questionpage = () => {
   const handleChat = (event) => {
     setIsChat(true);
     setIsButtonVis(false);
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"Prompt","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/prompted/", {
+        user: roll_no,
+        action: "Prompt",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
   };
 
-  const handleOptionClick = (option,index) => {
-    // console.log(action);
-    // console.log(index);
-    let va="A";
-    if(index==1){
-      va="B";
+  const handleOptionClick = (option, index) => {
+    let va = "A";
+    if (index == 1) {
+      va = "B";
+    } else if (index == 2) {
+      va = "C";
+    } else if (index == 3) {
+      va = "D";
     }
-    else if(index==2){
-      va="C";
-    }
-    else if(index==3){
-      va="D";
-    }
-    const pageno=JSON.stringify(currentQuestionIndex+1);
-    
-    const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
-    // console.log(details);
-    axios.post('http://localhost/api/prompted/',details)
-    .then(response => {
-      console.log(response.data); 
-      setSelectedOption(option);
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+
+    const details = { user: roll_no, action: va, page: pageno, time: curtime };
+
+    axios
+      .post("http://localhost/api/prompted/", details)
+      .then((response) => {
+        setSelectedOption(option);
+      })
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
     setSelectedOption(option);
   };
 
   const isContinueDisabled = !selectedOption || !question;
 
   const handleContinue = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/prompted/", {
+        user: roll_no,
+        action: "Continue",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
     if (!isContinueDisabled && question) {
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions.length) {
@@ -112,25 +114,25 @@ const Questionpage = () => {
         setResetHint((prev) => !prev);
         setIsButtonVis(true);
         setIsChat(false);
-      } else {
-        console.log("End of questions");
       }
     }
   };
 
   const handleSubmit = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://localhost/api/prompted/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
-    navigate("/thankyou")
-    
-    }
-
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/prompted/", {
+        user: roll_no,
+        action: "End",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
+    navigate("/thankyou");
+  };
 
   return (
     <div className="h-screen w-screen sm:w-full divide-y divide-solid overflow-y-auto">
@@ -165,7 +167,7 @@ const Questionpage = () => {
           </div>
           <div className="p-5"></div>
           <div className="flex justify-center">
-          {isButtonVis && (
+            {isButtonVis && (
               <Button
                 onClick={handleChat}
                 className="flex justify-center border border-blue-texts w-32 text-white bg-greys p-4 rounded-lg hover:bg-hover-color hover:text-white"
@@ -175,7 +177,7 @@ const Questionpage = () => {
             )}
           </div>
           <div>
-          {isChat && (
+            {isChat && (
               <div
                 className="bg-blue-50 p-4 box sm:max-h-[calc(100vh - 210px)] sm:overflow-auto"
                 style={{ whiteSpace: "break-spaces" }}
@@ -202,10 +204,10 @@ const Questionpage = () => {
         </div>
         <div className="flex justify-center">
           <div className="text-blue-texts">
-            Time remaining : 
+            Time remaining :
             <Timer />
             <div className="flex justify-normal items-center h-20">
-            <div>
+              <div>
                 {currentQuestionIndex + 1 != totalQuestionCount && (
                   <Button
                     className={`text-white bg-blue-texts rounded-full p-4 w-32 justify-items-end ${
