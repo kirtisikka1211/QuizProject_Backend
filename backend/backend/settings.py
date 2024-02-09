@@ -23,18 +23,38 @@ load_dotenv()
 
 SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".ec2-15-206-79-3.ap-south-1.compute.amazonaws.com"]
+
+## Development Settings
+if DEBUG:
+    ALLOWED_HOSTS += [".localhost", "127.0.0.1", "[::1]", "web:8000"]
+    ALLOWED_HOSTS = ["*"]
+
+
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:8844",
-    "http://localhost:8846",
-    "http://localhost:8848",
-)
+# CORS_ORIGIN_WHITELIST = (
+#     "http://localhost:8844",
+#     "http://localhost:8846",
+#     "http://localhost:8848",
+# )
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+INSTALLED_APPS = [
+    "quiz.apps.QuizConfig",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "corsheaders",
+]
 
 # Allow specific headers
 CORS_ALLOW_HEADERS = [
@@ -54,18 +74,10 @@ CORS_ALLOW_METHODS = [
 ]
 
 
+## Security Settings
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
-INSTALLED_APPS = [
-    "quiz.apps.QuizConfig",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "corsheaders",
-]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -124,8 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Asia/Kolkata"
@@ -147,3 +157,28 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True  # Change to True when in production with https
+    CSRF_COOKIE_SECURE = True  # Change to True when in production with https
+    SESSION_COOKIE_HTTPONLY = True  # Change to True when in production with https
+    CSRF_TRUSTED_ORIGINS = [
+        "http://ec2-15-206-79-3.ap-south-1.compute.amazonaws.com",
+        "http://www.ec2-15-206-79-3.ap-south-1.compute.amazonaws.com",
+    ]
+    # SECURE_HSTS_SECONDS = 31536000  # 1 year
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_PRELOAD = True
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_BROWSER_XSS_FILTER = True
+    # X_FRAME_OPTIONS = "DENY"
+    # ALLOWED_HOSTS = ["*"]
+else:
+    SECURE_PROXY_SSL_HEADER = None
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_HSTS_SECONDS = None
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
