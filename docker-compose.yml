@@ -11,43 +11,43 @@ services:
       - media:/www/app/media:rw
       - ./backend:/usr/src/app:rw
     ports:
-      - "8842:8000"
+      - "8842:8001"
     restart: always
     networks:
       - main
 
-  quizapp:
-    container_name: hci_normal
-    build:
-      context: ./quizapp/frontend
-    ports:
-      - "8844:8844"
-    depends_on:
-      - web
-    networks:
-      - main
+  # quizapp:
+  #   container_name: hci_normal
+  #   build:
+  #     context: ./quizapp/frontend
+  #   ports:
+  #     - "8844:8844"
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - main
 
-  quizapp_noassistance:
-    container_name: hci_noAssistance
-    build:
-      context: ./quizapp-noAssistance/frontend
-    ports:
-      - "8846:8846"
-    depends_on:
-      - web
-    networks:
-      - main
+  # quizapp_noassistance:
+  #   container_name: hci_noAssistance
+  #   build:
+  #     context: ./quizapp-noAssistance/frontend
+  #   ports:
+  #     - "8846:8846"
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - main
 
-  quizapp_prompted:
-    container_name: hci_prompted
-    build:
-      context: ./quizapp-prompted/frontend
-    ports:
-      - "8848:8848"
-    depends_on:
-      - web
-    networks:
-      - main
+  # quizapp_prompted:
+  #   container_name: hci_prompted
+  #   build:
+  #     context: ./quizapp-prompted/frontend
+  #   ports:
+  #     - "8848:8848"
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - main
 
   nginx:
     container_name: nginx_hci
@@ -62,9 +62,9 @@ services:
       - 80:80
     depends_on:
       - web
-      - quizapp
-      - quizapp_noassistance
-      - quizapp_prompted
+      # - quizapp
+      # - quizapp_noassistance
+      # - quizapp_prompted
     restart: always
     networks:
       - main
