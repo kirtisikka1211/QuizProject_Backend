@@ -59,7 +59,7 @@ const Questionpage = () => {
     const details = { user: roll_no, action: va, page: pageno, time: curtime };
 
     axios
-      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/prompted/", details)
+      .post("https://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/prompted/", details)
       .then((response) => {
         setSelectedOption(option);
       })
