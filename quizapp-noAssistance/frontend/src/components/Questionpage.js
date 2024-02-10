@@ -27,7 +27,7 @@ const Questionpage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost/api/questions/");
+        const response = await axios.get("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
@@ -64,7 +64,7 @@ const Questionpage = () => {
     const details = { user: roll_no, action: va, page: pageno, time: curtime };
 
     axios
-      .post("http://localhost/api/noassistance/", details)
+      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/noassistance/", details)
       .then((response) => {
         setSelectedOption(option);
       })
@@ -78,7 +78,7 @@ const Questionpage = () => {
   const handleContinue = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("http://localhost/api/noassistance/", {
+      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/noassistance/", {
         user: roll_no,
         action: "Continue",
         page: pageno,
@@ -101,7 +101,7 @@ const Questionpage = () => {
   const handleSubmit = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("http://localhost/api/noassistance/", {
+      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/noassistance/", {
         user: roll_no,
         action: "End",
         page: pageno,

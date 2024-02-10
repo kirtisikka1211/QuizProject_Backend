@@ -20,7 +20,7 @@ const BorderForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost/api/users/", formData)
+      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/users/", formData)
       .then((response) => {})
       .catch((error) => {
         console.error("Error while making the Axios request:", error);

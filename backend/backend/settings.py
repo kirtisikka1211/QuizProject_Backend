@@ -32,6 +32,9 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8844",
     "http://localhost:8846",
     "http://localhost:8848",
+    "https://hci-normal.vercel.app/",
+    "https://hci-noassistance.vercel.app/",
+    "https://hci-prompted.vercel.app/",
 )
 
 CORS_ORIGIN_ALLOW_ALL = True

@@ -22,7 +22,7 @@ const Welcome = () => {
     navigate(`/question?roll_no=${roll_no}`);
 
     axios
-      .post("http://localhost/api/prompted/", {
+      .post("http://ec2-3-109-139-70.ap-south-1.compute.amazonaws.com/api/prompted/", {
         user: roll_no,
         action: "Start",
         page: 0,
