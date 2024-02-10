@@ -6,7 +6,6 @@ import Timer from "./Timer";
 import Chat from "./chat";
 import { useLocation } from "react-router-dom";
 
-
 const Questionpage = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -14,24 +13,21 @@ const Questionpage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [resetHint, setResetHint] = useState(false);
   const [timer, setTimer] = useState("0:0");
-  
+
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const roll_no = queryParams.get("roll_no");
-  const dateUnix=Date.now();
-  const date= new Date(dateUnix)
-  const hr = ('0' + date.getHours()).slice(-2);
-  const min = ('0' + date.getMinutes()).slice(-2); 
-  const sec = ('0' + date.getSeconds()).slice(-2); 
+  const dateUnix = Date.now();
+  const date = new Date(dateUnix);
+  const hr = ("0" + date.getHours()).slice(-2);
+  const min = ("0" + date.getMinutes()).slice(-2);
+  const sec = ("0" + date.getSeconds()).slice(-2);
   const curtime = `${hr}:${min}:${sec}`;
-  // console.log(curtime);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/questions/"
-        );
+        const response = await axios.get("http://localhost/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
@@ -54,71 +50,69 @@ const Questionpage = () => {
   const currentQuestionPercent =
     ((currentQuestionIndex + 1) / totalQuestionCount) * 100;
 
-  const handleOptionClick = (option,index) => {
-    // console.log(action);
-    // console.log(index);
-    let va="A";
-    if(index==1){
-      va="B";
+  const handleOptionClick = (option, index) => {
+    let va = "A";
+    if (index == 1) {
+      va = "B";
+    } else if (index == 2) {
+      va = "C";
+    } else if (index == 3) {
+      va = "D";
     }
-    else if(index==2){
-      va="C";
-    }
-    else if(index==3){
-      va="D";
-    }
-    const pageno=JSON.stringify(currentQuestionIndex+1);
-    
-    const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
-    // console.log(details);
-    axios.post('http://127.0.0.1:8000/api/noassistance/',details)
-    .then(response => {
-      console.log(response.data); 
-      setSelectedOption(option);
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+
+    const details = { user: roll_no, action: va, page: pageno, time: curtime };
+
+    axios
+      .post("http://localhost/api/noassistance/", details)
+      .then((response) => {
+        setSelectedOption(option);
+      })
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
     setSelectedOption(option);
   };
 
-  
-
   const isContinueDisabled = !selectedOption || !question;
   const handleContinue = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/noassistance/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/noassistance/", {
+        user: roll_no,
+        action: "Continue",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
     if (!isContinueDisabled && question) {
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions.length) {
         setCurrentQuestionIndex(nextQuestionIndex);
         setSelectedOption(null);
         setResetHint((prev) => !prev);
-      } else {
-        console.log("End of questions");
       }
     }
   };
-  
-  const handleSubmit = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/noassistance/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
-    navigate("/thankyou")
-    
-    }
 
+  const handleSubmit = () => {
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/noassistance/", {
+        user: roll_no,
+        action: "End",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
+    navigate("/thankyou");
+  };
 
   return (
     <div className="h-screen w-screen sm:w-full divide-y divide-solid overflow-y-auto">
@@ -129,22 +123,23 @@ const Questionpage = () => {
           </div>
           <div className="flex flex-col h-screen p-4 space-y-7">
             {question &&
-              [question.op1, question.op2, question.op3, question.op4].map((option, index) => (
-                <Button
-                  key={index}
-                  className={`border border-blue-texts w-32 text-black p-4 rounded-lg ${
-                    selectedOption === option
-                      ? "bg-hover-color text-white"
-                      : "hover:bg-hover-color hover:text-white"
-                  }`}
-                  onClick={() => handleOptionClick(option,index)}
-                >
-                  {option}
-                </Button>
-              ))}
+              [question.op1, question.op2, question.op3, question.op4].map(
+                (option, index) => (
+                  <Button
+                    key={index}
+                    className={`border border-blue-texts w-32 text-black p-4 rounded-lg ${
+                      selectedOption === option
+                        ? "bg-hover-color text-white"
+                        : "hover:bg-hover-color hover:text-white"
+                    }`}
+                    onClick={() => handleOptionClick(option, index)}
+                  >
+                    {option}
+                  </Button>
+                )
+              )}
           </div>
         </div>
-      
       </div>
       <div className="h-1/5 px-12">
         <div className="h-5"></div>
@@ -159,10 +154,8 @@ const Questionpage = () => {
         </div>
         <div className="flex justify-center">
           <div className="text-blue-texts">
-            Time remaining 
+            Time remaining :&nbsp;
             <Timer />
-            {/* {Timer()==="0:0" && handleTimeOut()} */}
-            {console.log(currentQuestionIndex)}
             <div className="flex justify-normal items-center h-20">
               <div>
                 {currentQuestionIndex + 1 != totalQuestionCount && (

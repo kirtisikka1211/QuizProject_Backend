@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './chat.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./chat.css";
 
 const Chat = ({ text, resetHint }) => {
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showCursor, setShowCursor] = useState(false);
-  const prevText = useRef('');
+  const prevText = useRef("");
 
   useEffect(() => {
     setIsLoading(true);
     setShowCursor(false);
-    setDisplayedText('');
+    setDisplayedText("");
     setCurrentIndex(0);
     prevText.current = text;
 
@@ -29,7 +29,7 @@ const Chat = ({ text, resetHint }) => {
     if (!isLoading && text !== prevText.current) {
       setIsLoading(true);
       setShowCursor(false);
-      setDisplayedText('');
+      setDisplayedText("");
       setCurrentIndex(0);
       prevText.current = text;
 
@@ -62,10 +62,12 @@ const Chat = ({ text, resetHint }) => {
   }, [text, currentIndex, isLoading]);
 
   return (
-    <div className={`chat ${isLoading ? 'loading' : 'typing'}`}>
+    <div className={`chat ${isLoading ? "loading" : "typing"}`}>
       {isLoading ? (
         <div className="loading">
-          Loading<span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
+          Loading<span className="dot1">.</span>
+          <span className="dot2">.</span>
+          <span className="dot3">.</span>
         </div>
       ) : (
         displayedText

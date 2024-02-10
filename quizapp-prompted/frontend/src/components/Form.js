@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Welcome from "./Welcome";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -20,16 +19,14 @@ const BorderForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/users/',formData)
-  .then(response => {
-    console.log(response.data); 
-  })
-  .catch(error => {
-    console.error('Error while making the Axios request:', error);
-  })
-  console.log(formData);
-    navigate(`/Welcome?roll_no=${formData.roll_no}`);
+    axios
+      .post("http://localhost/api/users/", formData)
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
 
+    navigate(`/Welcome?roll_no=${formData.roll_no}`);
   };
 
   return (
@@ -38,8 +35,12 @@ const BorderForm = () => {
         onSubmit={handleSubmit}
         className="max-w-md mx-auto sm:h-30 h-30 border border-blue-texts p-6 rounded-lg bg-white md:w-1/2"
       >
-        <div className="flex justify-center items-center mb-10 text-3xl text-blue-texts">Welcome</div>
-        <div className="flex justify-center items-center mb-10 text-xl text-blue-texts">Please enter the following details before getting started</div>
+        <div className="flex justify-center items-center mb-10 text-3xl text-blue-texts">
+          Welcome
+        </div>
+        <div className="flex justify-center items-center mb-10 text-xl text-blue-texts">
+          Please enter the following details before getting started
+        </div>
         <div className="mb-7">
           <label
             htmlFor="name"
@@ -89,7 +90,7 @@ const BorderForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="border border-blue-texts p-2.5 rounded-md w-full max-w-md"  // Set max width
+            className="border border-blue-texts p-2.5 rounded-md w-full max-w-md" // Set max width
             placeholder="am.en.u4cse22001@am.students.amrita.edu"
             required
           />
@@ -101,9 +102,7 @@ const BorderForm = () => {
           Submit
         </button>
       </form>
-
     </div>
-
   );
 };
 

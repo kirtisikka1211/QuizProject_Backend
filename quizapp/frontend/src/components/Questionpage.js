@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-tailwind/react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Timer from "./Timer";
 import Chat from "./chat";
@@ -11,7 +11,7 @@ const Questionpage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [resetHint, setResetHint] = useState(false);
   const location = useLocation();
-  
+
   const queryParams = new URLSearchParams(location.search);
   const roll_no = queryParams.get("roll_no");
   const dateUnix = Date.now();
@@ -20,14 +20,11 @@ const Questionpage = () => {
   const min = ("0" + date.getMinutes()).slice(-2);
   const sec = ("0" + date.getSeconds()).slice(-2);
   const curtime = `${hr}:${min}:${sec}`;
-  // console.log(curtime);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/questions/"
-        );
+        const response = await axios.get("http://localhost/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
@@ -48,82 +45,68 @@ const Questionpage = () => {
   const currentQuestionPercent =
     ((currentQuestionIndex + 1) / totalQuestionCount) * 100;
 
-    const handleOptionClick = (option,index) => {
-      // console.log(action);
-      // console.log(index);
-      let va="A";
-      if(index==1){
-        va="B";
-      }
-      else if(index==2){
-        va="C";
-      }
-      else if(index==3){
-        va="D";
-      }
-      const pageno=JSON.stringify(currentQuestionIndex+1);
-      
-      const details={"user":roll_no,"action":va,"page":pageno,"time":curtime}
-      // console.log(details);
-      axios.post('http://127.0.0.1:8000/api/prompted/',details)
-      .then(response => {
-        console.log(response.data); 
+  const handleOptionClick = (option, index) => {
+    let va = "A";
+    if (index == 1) {
+      va = "B";
+    } else if (index == 2) {
+      va = "C";
+    } else if (index == 3) {
+      va = "D";
+    }
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+
+    const details = { user: roll_no, action: va, page: pageno, time: curtime };
+
+    axios
+      .post("http://localhost/api/prompted/", details)
+      .then((response) => {
         setSelectedOption(option);
       })
-      .catch(error => {
-        console.error('Error while making the Axios request:', error);
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
       });
-      setSelectedOption(option);
-    };
+    setSelectedOption(option);
+  };
 
   const isContinueDisabled = !selectedOption || !question;
   const handleContinue = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/unprompted/',{"user":roll_no,"action":"Continue","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/unprompted/", {
+        user: roll_no,
+        action: "Continue",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
     if (!isContinueDisabled && question) {
       const nextQuestionIndex = currentQuestionIndex + 1;
       if (nextQuestionIndex < questions.length) {
         setCurrentQuestionIndex(nextQuestionIndex);
         setSelectedOption(null);
         setResetHint((prev) => !prev);
-        // setIsButtonVis(true);
-        // setIsChat(false);
-      } else {
-        console.log("End of questions");
       }
     }
   };
 
   const handleSubmit = () => {
-    const pageno=JSON.stringify(currentQuestionIndex+1)
-    axios.post('http://127.0.0.1:8000/api/unprompted/',{"user":roll_no,"action":"End","page":pageno,"time":curtime})
-    .then(response => {
-      console.log(response.data); 
-    })
-    .catch(error => {
-      console.error('Error while making the Axios request:', error);
-    });
-    navigate("/thankyou")
-    
-    }
-
-  const handleTimeOut = () => {
-    // console.log(currentQuestionIndex);
-    const nextQuestionIndex = currentQuestionIndex + 1;
-    // console.log(nextQuestionIndex);
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
-      setSelectedOption(null);
-      setResetHint((prev) => !prev);
-    } else {
-      console.log("End of questions");
-    }
+    const pageno = JSON.stringify(currentQuestionIndex + 1);
+    axios
+      .post("http://localhost/api/unprompted/", {
+        user: roll_no,
+        action: "End",
+        page: pageno,
+        time: curtime,
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error("Error while making the Axios request:", error);
+      });
+    navigate("/thankyou");
   };
 
   return (
@@ -182,10 +165,8 @@ const Questionpage = () => {
         </div>
         <div className="flex justify-center">
           <div className="text-blue-texts">
-            Time remaining
+            Time remaining :&nbsp;
             <Timer />
-            {/* {Timer()==="0:0" && handleTimeOut()} */}
-            {console.log(currentQuestionIndex)}
             <div className="flex justify-normal items-center h-20">
               <div>
                 {currentQuestionIndex + 1 != totalQuestionCount && (

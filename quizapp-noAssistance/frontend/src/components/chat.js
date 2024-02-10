@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './chat.css';
+import React, { useState, useEffect } from "react";
+import "./chat.css";
 const Chat = ({ text }) => {
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showCursor, setShowCursor] = useState(false);
@@ -24,7 +24,7 @@ const Chat = ({ text }) => {
           setDisplayedText((prevText) => prevText + text[currentIndex]);
           setCurrentIndex((prevIndex) => prevIndex + 1);
         } else {
-          setShowCursor(false); 
+          setShowCursor(false);
         }
       }, 35);
 
@@ -35,10 +35,12 @@ const Chat = ({ text }) => {
   }, [text, currentIndex, isLoading]);
 
   return (
-    <div className={`chat ${isLoading ? 'loading' : 'typing'}`}>
+    <div className={`chat ${isLoading ? "loading" : "typing"}`}>
       {isLoading ? (
         <div className="loading">
-          Loading<span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
+          Loading<span className="dot1">.</span>
+          <span className="dot2">.</span>
+          <span className="dot3">.</span>
         </div>
       ) : (
         displayedText
