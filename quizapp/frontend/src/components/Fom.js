@@ -20,7 +20,7 @@ const BorderForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost/api/users/", formData)
+      .post("https://hci-analysis.softwareapi/users/", formData)
       .then((response) => {})
       .catch((error) => {
         console.error("Error while making the Axios request:", error);

@@ -24,7 +24,7 @@ const Questionpage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost/api/questions/");
+        const response = await axios.get("https://hci-analysis.software/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
@@ -59,7 +59,7 @@ const Questionpage = () => {
     const details = { user: roll_no, action: va, page: pageno, time: curtime };
 
     axios
-      .post("http://localhost/api/prompted/", details)
+      .post("https://hci-analysis.softwareapi/prompted/", details)
       .then((response) => {
         setSelectedOption(option);
       })
@@ -73,7 +73,7 @@ const Questionpage = () => {
   const handleContinue = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("http://localhost/api/unprompted/", {
+      .post("https://hci-analysis.software/api/unprompted/", {
         user: roll_no,
         action: "Continue",
         page: pageno,
@@ -96,7 +96,7 @@ const Questionpage = () => {
   const handleSubmit = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("http://localhost/api/unprompted/", {
+      .post("https://hci-analysis.software/api/unprompted/", {
         user: roll_no,
         action: "End",
         page: pageno,
