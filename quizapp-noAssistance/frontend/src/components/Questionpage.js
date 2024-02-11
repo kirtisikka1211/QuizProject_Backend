@@ -64,7 +64,7 @@ const Questionpage = () => {
     const details = { user: roll_no, action: va, page: pageno, time: curtime };
 
     axios
-      .post("https://hci-analysis.software//api/noassistance/", details)
+      .post("https://hci-analysis.software/api/noassistance/", details)
       .then((response) => {
         setSelectedOption(option);
       })
@@ -78,7 +78,7 @@ const Questionpage = () => {
   const handleContinue = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("https://hci-analysis.software//api/noassistance/", {
+      .post("https://hci-analysis.software/api/noassistance/", {
         user: roll_no,
         action: "Continue",
         page: pageno,
@@ -101,7 +101,7 @@ const Questionpage = () => {
   const handleSubmit = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("https://hci-analysis.software//api/noassistance/", {
+      .post("https://hci-analysis.software/api/noassistance/", {
         user: roll_no,
         action: "End",
         page: pageno,

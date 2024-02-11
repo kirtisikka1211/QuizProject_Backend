@@ -22,7 +22,7 @@ const Welcome = () => {
     navigate(`/question?roll_no=${roll_no}`);
 
     axios
-      .post("https://hci-analysis.software//api/prompted/", {
+      .post("https://hci-analysis.software/api/prompted/", {
         user: roll_no,
         action: "Start",
         page: 0,

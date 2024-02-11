@@ -73,7 +73,7 @@ const Questionpage = () => {
   const handleContinue = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("https://hci-analysis.software//api/unprompted/", {
+      .post("https://hci-analysis.software/api/unprompted/", {
         user: roll_no,
         action: "Continue",
         page: pageno,
@@ -96,7 +96,7 @@ const Questionpage = () => {
   const handleSubmit = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
-      .post("https://hci-analysis.software//api/unprompted/", {
+      .post("https://hci-analysis.software/api/unprompted/", {
         user: roll_no,
         action: "End",
         page: pageno,
