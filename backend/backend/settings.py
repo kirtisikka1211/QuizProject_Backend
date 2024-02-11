@@ -23,11 +23,12 @@ load_dotenv()
 
 SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".hci-analysis.software", "www.hci-analysis.software"]
 CORS_ALLOW_CREDENTIALS = True
 
+## white list the client apps
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:8844",
     "http://localhost:8846",
@@ -38,7 +39,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://amrita-quiz-set3.vercel.app',
 )
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
 # Allow specific headers
 CORS_ALLOW_HEADERS = [
@@ -72,9 +73,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -102,7 +103,41 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-CORS_ALLOW_CREDENTIALS = True
+
+# Security Settings
+# Redirect all non-HTTPS traffic to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Use secure session and CSRF cookies in production
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Set the HttpOnly flag on the session cookie
+SESSION_COOKIE_HTTPONLY = True
+
+# Define the header that your load balancer or reverse proxy uses to indicate a secure connection
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# HTTP Strict Transport Security settings
+SECURE_HSTS_SECONDS = 31536000  # One year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Prevent client-side JavaScript from accessing the CSRF cookie
+CSRF_COOKIE_HTTPONLY = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://hci-prompted.vercel.app",
+    "https://hci-normal.vercel.app",
+    "https://hci-noassistance.vercel.app"
+]
+
+# Ensure your site will only be served over HTTPS and not embedded in a frame
+X_FRAME_OPTIONS = 'DENY'
+
+# Additional headers for added security
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 
 DATABASES = {
     "default": {
