@@ -27,7 +27,7 @@ const Questionpage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://hci-analysis.software//api/questions/");
+        const response = await axios.get("https://hci-analysis.software/api/questions/");
         if (
           response.data &&
           Array.isArray(response.data) &&
