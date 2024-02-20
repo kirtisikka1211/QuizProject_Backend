@@ -37,6 +37,7 @@ class PromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
+    date= models.DateField(auto_now_add=True)
 
 
 class UnpromptedAnswers(models.Model):
@@ -57,6 +58,7 @@ class UnpromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
+    date= models.DateField(auto_now_add=True)
 
 
 class NoAssistanceAnswers(models.Model):
@@ -76,3 +78,4 @@ class NoAssistanceAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
+    date= models.DateField(auto_now_add=True)
