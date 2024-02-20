@@ -128,7 +128,7 @@ const Questionpage = () => {
                         ? "bg-hover-color text-white"
                         : "hover:bg-hover-color hover:text-white"
                     }`}
-                    onClick={() => handleOptionClick(option,index)}
+                    onClick={() => handleOptionClick(option, index)}
                   >
                     {option}
                   </Button>
