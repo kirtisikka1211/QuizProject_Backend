@@ -59,7 +59,7 @@ const Questionpage = () => {
     const details = { user: roll_no, action: va, page: pageno, time: curtime };
 
     axios
-      .post("https://hci-analysis.software/api/prompted/", details)
+      .post("https://hci-analysis.software/api/unprompted/", details)
       .then((response) => {
         setSelectedOption(option);
       })
