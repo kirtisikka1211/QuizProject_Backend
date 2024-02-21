@@ -127,9 +127,9 @@ SECURE_HSTS_PRELOAD = True
 CSRF_COOKIE_HTTPONLY = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://hci-prompted.vercel.app",
-    "https://hci-normal.vercel.app",
-    "https://hci-noassistance.vercel.app"
+    "https://amrita-quiz-set1.vercel.app",
+    "https://amrita-quiz-set2.vercel.app",
+    "https://amrita-quiz-set3.vercel.app"
 ]
 
 # Ensure your site will only be served over HTTPS and not embedded in a frame
