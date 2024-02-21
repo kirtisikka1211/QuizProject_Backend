@@ -1,7 +1,8 @@
+import datetime
 from django.db import models
 from django.db.models.deletion import CASCADE
 
-
+from datetime import date
 from django.db import models
 
 class User(models.Model):
@@ -9,16 +10,11 @@ class User(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     gender = models.CharField(max_length=200,null=True)
-    age = models.IntegerField(null=True)  # Assuming age is stored as an integer
-    degree = models.CharField(max_length=200,null=True)  # Corrected field name to lowercase
+    age = models.IntegerField(null=True) 
+    degree = models.CharField(max_length=200,null=True)  
     uni = models.CharField(max_length=200,null=True)
-    cgpa = models.DecimalField(max_digits=5, decimal_places=2,null=True)  # CGPA can have decimal values
+    cgpa = models.DecimalField(max_digits=5, decimal_places=2,null=True) 
     
-
-    
-
-
-
 
 
 class Question(models.Model):
@@ -50,7 +46,7 @@ class PromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date = models.DateField(default="0001-01-01")
+    date = models.DateTimeField(("Date"), auto_now_add = True)
     
 
 
@@ -72,7 +68,7 @@ class UnpromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date = models.DateField(default="0001-01-01")
+    date = models.DateTimeField(("Date"), auto_now_add = True)
 
 
 class NoAssistanceAnswers(models.Model):
@@ -92,9 +88,31 @@ class NoAssistanceAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date = models.DateField(default="0001-01-01")
+    date = models.DateTimeField(("Date"), auto_now_add = True)
 
-# class FeedbackForm(models.Model):
+class FeedbackForm(models.Model):
+    user = models.CharField(max_length=200, null=True)
+    action = models.CharField(
+        choices=[
+            ("A", "A"),
+            ("B", "B"),
+            ("C", "C"),
+            ("D", "D"),
+            ("E", "E"),
+            ("Start", "Start"),
+            ("End", "End"),
+            ("Continue", "Continue"),
+        ],
+        default="Null",
+        max_length=10,
+    )
+    question = models.TextField(null=True)
+    time = models.TimeField(default="00:00:00")
+    date = models.DateTimeField(("Date"), auto_now_add = True)
+
+
+
+
 
 
 
