@@ -91,6 +91,32 @@ class NoAssistanceAnswers(models.Model):
     date = models.DateTimeField(("Date"), auto_now_add = True)
 
 class FeedbackForm(models.Model):
+    
+   
+    questions = models.TextField(null=True)
+    option1 = models.CharField(max_length=200, null=True)
+    option2 = models.CharField(max_length=200, null=True)
+    option3 = models.CharField(max_length=200, null=True)
+    option4 = models.CharField(max_length=200, null=True)
+    option5 = models.CharField(max_length=200, null=True)
+        
+
+
+    
+   
+
+
+
+class FeedbackANS(models.Model):
+    UNPROMPTED = 1
+    PROMPTED = 2
+    NO_ASSISTANCE = 3
+
+    SET_CHOICES = [
+        (UNPROMPTED, "Unprompted"),
+        (PROMPTED, "Prompted"),
+        (NO_ASSISTANCE, "No Assistance"),
+    ]
     user = models.CharField(max_length=200, null=True)
     action = models.CharField(
         choices=[
@@ -106,13 +132,8 @@ class FeedbackForm(models.Model):
         default="Null",
         max_length=10,
     )
-    question = models.TextField(null=True)
+    set = models.IntegerField(choices=SET_CHOICES, default=UNPROMPTED)
     time = models.TimeField(default="00:00:00")
     date = models.DateTimeField(("Date"), auto_now_add = True)
-
-
-
-
-
-
+    page = models.CharField(max_length=200, default="Null")
 

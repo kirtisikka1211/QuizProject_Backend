@@ -34,5 +34,9 @@ class NoAssistanceAnswersSerializer(serializers.ModelSerializer):
 
 class FeedbackAnswersSerializer(serializers.ModelSerializer):
     class Meta:
+        model = FeedbackANS
+        fields = "__all__"
+class FeedbackViewSerializer(serializers.ModelSerializer):
+    class Meta:
         model = FeedbackForm
         fields = "__all__"

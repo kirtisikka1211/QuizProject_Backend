@@ -12,3 +12,8 @@ class addQuestionform(ModelForm):
     class Meta:
         model=Question
         fields="__all__"
+class addFeedback(ModelForm):
+    class Meta:
+        model=FeedbackForm
+        fields="__all__"
+

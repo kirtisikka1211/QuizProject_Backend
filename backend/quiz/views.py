@@ -6,14 +6,17 @@ from .models import (
     UnpromptedAnswers,
     NoAssistanceAnswers,
     FeedbackForm,
+    FeedbackANS
 )
 from .serializers import (
+    FeedbackViewSerializer,
     QuestionSerializer,
     UserSerializer,
     PromptedAnswersSerializer,
     UnpromptedAnswersSerializer,
     NoAssistanceAnswersSerializer,
     FeedbackAnswersSerializer,
+
 )
 from rest_framework import viewsets
 
@@ -44,4 +47,8 @@ class NoAssistanceAnswersViewSet(viewsets.ModelViewSet):
 
 class FeedbackFormViewSet(viewsets.ModelViewSet):
     queryset = FeedbackForm.objects.all()
+    serializer_class = FeedbackViewSerializer
+
+class FeedbackFormViewSet(viewsets.ModelViewSet):
+    queryset = FeedbackANS.objects.all()
     serializer_class = FeedbackAnswersSerializer
