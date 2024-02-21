@@ -16,6 +16,7 @@ from .serializers import (
     UnpromptedAnswersSerializer,
     NoAssistanceAnswersSerializer,
     FeedbackAnswersSerializer,
+    FeedbackViewSerializer
 
 )
 from rest_framework import viewsets
