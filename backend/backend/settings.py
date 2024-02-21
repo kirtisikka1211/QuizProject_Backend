@@ -33,9 +33,9 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8846",
     "http://localhost:8848",
    
-    "https://amrita-quiz-set2.vercel.app/",
-    "https://amrita-quiz-set3.vercel.app/",
-    "https://amrita-quiz-set1.vercel.app/",
+    'https://amrita-quiz-set1.vercel.app',
+    'https://amrita-quiz-set2.vercel.app',
+    'https://amrita-quiz-set3.vercel.app',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True

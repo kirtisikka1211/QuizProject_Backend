@@ -2,10 +2,23 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 
 
+from django.db import models
+
 class User(models.Model):
     roll_no = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
+    gender = models.CharField(max_length=200,null=True)
+    age = models.IntegerField(null=True)  # Assuming age is stored as an integer
+    degree = models.CharField(max_length=200,null=True)  # Corrected field name to lowercase
+    uni = models.CharField(max_length=200,null=True)
+    cgpa = models.DecimalField(max_digits=5, decimal_places=2,null=True)  # CGPA can have decimal values
+    
+
+    
+
+
+
 
 
 class Question(models.Model):
@@ -37,7 +50,8 @@ class PromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date= models.DateField(auto_now_add=True)
+    date = models.DateField(default="0001-01-01")
+    
 
 
 class UnpromptedAnswers(models.Model):
@@ -58,7 +72,7 @@ class UnpromptedAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date= models.DateField(auto_now_add=True)
+    date = models.DateField(default="0001-01-01")
 
 
 class NoAssistanceAnswers(models.Model):
@@ -78,4 +92,9 @@ class NoAssistanceAnswers(models.Model):
     )
     page = models.CharField(max_length=200, default="Null")
     time = models.TimeField(default="00:00:00")
-    date= models.DateField(auto_now_add=True)
+    date = models.DateField(default="0001-01-01")
+
+# class FeedbackForm(models.Model):
+
+
+
