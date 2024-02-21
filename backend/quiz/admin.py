@@ -45,3 +45,8 @@ class NoAssistanceAnswersAdmin(admin.ModelAdmin):
 
 
 admin.site.register(NoAssistanceAnswers, NoAssistanceAnswersAdmin)
+class FeedbackFormAdmin(admin.ModelAdmin):
+    list_display = ("user", "action", "question", "time", "date")
+
+
+admin.site.register(FeedbackForm, FeedbackFormAdmin)
