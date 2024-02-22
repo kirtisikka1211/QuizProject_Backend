@@ -14,8 +14,8 @@ class User(models.Model):
     degree = models.CharField(max_length=200,null=True)  
     uni = models.CharField(max_length=200,null=True)
     cgpa = models.DecimalField(max_digits=5, decimal_places=2,null=True) 
+    device_dimensions= models.TextField(default="0x0")
     
-
 
 class Question(models.Model):
     question = models.TextField(null=True)
