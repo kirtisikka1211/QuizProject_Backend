@@ -93,7 +93,7 @@ const Questionpage = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleNext = () => {
     const pageno = JSON.stringify(currentQuestionIndex + 1);
     axios
       .post("https://hci-analysis.software/api/unprompted/", {
@@ -185,10 +185,10 @@ const Questionpage = () => {
                     className={`text-white bg-blue-texts rounded-full p-4 w-32 justify-items-end ${
                       isContinueDisabled ? "bg-gray-400 cursor-not-allowed" : ""
                     }`}
-                    onClick={handleSubmit}
+                    onClick={handleNext}
                     disabled={isContinueDisabled}
                   >
-                    Submit
+                    Next
                   </Button>
                 )}
               </div>
