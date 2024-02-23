@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Timer from "./Timer";
 import Chat from "./chat";
+
 const Questionpage = () => {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -106,7 +107,7 @@ const Questionpage = () => {
       .catch((error) => {
         console.error("Error while making the Axios request:", error);
       });
-    navigate("/thankyou");
+    navigate("/feedback");
   };
 
   return (
