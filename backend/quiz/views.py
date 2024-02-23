@@ -50,6 +50,6 @@ class FeedbackFormViewSet(viewsets.ModelViewSet):
     queryset = FeedbackForm.objects.all()
     serializer_class = FeedbackViewSerializer
 
-class FeedbackFormViewSet(viewsets.ModelViewSet):
+class FeedbackAnswersViewSet(viewsets.ModelViewSet):
     queryset = FeedbackANS.objects.all()
     serializer_class = FeedbackAnswersSerializer

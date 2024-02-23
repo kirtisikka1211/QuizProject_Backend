@@ -12,7 +12,7 @@ router.register(r"prompted", PromptedAnswersViewSet)
 router.register(r"unprompted", UnpromptedAnswersViewSet)
 router.register(r"noassistance", NoAssistanceAnswersViewSet)
 router.register(r"feedback", FeedbackFormViewSet)
-router.register(r"feedback", FeedbackFormViewSet)
+router.register(r"feedbackans", FeedbackAnswersViewSet)
 
 
 # Define your API URL patterns
