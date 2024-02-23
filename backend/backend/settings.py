@@ -33,10 +33,12 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8844",
     "http://localhost:8846",
     "http://localhost:8848",
-   
-    'https://amrita-quiz-set1.vercel.app',
-    'https://amrita-quiz-set2.vercel.app',
-    'https://amrita-quiz-set3.vercel.app',
+    "https://amrita-quiz-set1.vercel.app",
+    "https://amrita-quiz-set2.vercel.app",
+    "https://amrita-quiz-set3.vercel.app",
+    "https://am-un.vercel.app",
+    "https://am-pr.vercel.app",
+    "https://am-no.vercel.app"
 )
 
 CORS_ORIGIN_ALLOW_ALL = False
@@ -129,7 +131,10 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_TRUSTED_ORIGINS = [
     "https://amrita-quiz-set1.vercel.app",
     "https://amrita-quiz-set2.vercel.app",
-    "https://amrita-quiz-set3.vercel.app"
+    "https://amrita-quiz-set3.vercel.app",
+    "https://am-un.vercel.app",
+    "https://am-pr.vercel.app",
+    "https://am-no.vercel.app"
 ]
 
 # Ensure your site will only be served over HTTPS and not embedded in a frame
