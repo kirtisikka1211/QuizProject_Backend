@@ -93,6 +93,9 @@ const FeedbackForm = () => {
         onSubmit={handleSubmit}
         className="max-w-md mx-auto sm:h-30 h-5/6 border border-blue-texts p-6 rounded-lg bg-white md:w-1/2 overflow-y-auto"
       >
+        <div className="flex justify-center items-center mb-10 text-3xl text-blue-texts">
+          Feedback Form
+        </div>
         <div className="flex flex-col p-4 space-y-7 ">
           {questions.map((question, index) => (
             <div key={question.id}>
