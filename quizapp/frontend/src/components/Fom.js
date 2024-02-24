@@ -29,7 +29,6 @@ const BorderForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     axios
       .post("https://hci-analysis.software/api/users/", formData)
       .then((response) => {})

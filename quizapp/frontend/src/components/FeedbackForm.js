@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const FeedbackForm = () => {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [questionCounter, setQuestionCounter] = useState(1);
+  const options = ['A', 'B', 'C', 'D', 'E']; 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const roll_no = queryParams.get("roll_no");
+  const dateUnix = Date.now();
+  const date = new Date(dateUnix);
+  const hr = ("0" + date.getHours()).slice(-2);
+  const min = ("0" + date.getMinutes()).slice(-2);
+  const sec = ("0" + date.getSeconds()).slice(-2);
+  const curtime = `${hr}:${min}:${sec}`;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,16 +44,34 @@ const FeedbackForm = () => {
     fetchData();
   }, []);
 
-  const handleOptionSelect = (questionId, option) => {
+  const handleOptionSelect = (questionId, optionIndex) => {
+    const selectedOption = options[optionIndex];
     setSelectedOptions(prevState => ({
       ...prevState,
-      [questionId]: option
+      [questionId]: selectedOption
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/thankyou");
+    
+    try {
+      for (let i = 0; i < questions.length; i++) {
+        const question = questions[i];
+        const feedbackData = {
+          user: roll_no, 
+          action: selectedOptions[question.id],
+          set: 1, 
+          time: curtime,
+          page: `Question ${i + 1}`, 
+        };
+        await axios.post("https://hci-analysis.software/api/feedbackans/", feedbackData);
+      }
+
+      navigate("/thankyou");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+    }
   };
 
   return (
@@ -56,16 +85,15 @@ const FeedbackForm = () => {
             <div key={question.id}>
               <p>Q.{questionCounter + index}. {question.questions}</p>
               <div className="space-y-2">
-                {['option1', 'option2', 'option3', 'option4', 'option5'].map((optionKey) => (
-                  <div key={optionKey} className="flex items-center">
+                {options.map((option, optionIndex) => (
+                  <div key={option} className="flex items-center">
                     <input
                       type="radio"
-                      value={question[optionKey]}
-                      checked={selectedOptions[question.id] === question[optionKey]}
-                      onChange={() => handleOptionSelect(question.id, question[optionKey])}
+                      checked={selectedOptions[question.id] === options[optionIndex]}
+                      onChange={() => handleOptionSelect(question.id, optionIndex)}
                       className="mr-2"
                     />
-                    <label>{question[optionKey]}</label>
+                    <label>{option === 'A' ? 'Certainly' : option === 'B' ? 'Very Likely' : option === 'C' ? 'Likely' : option === 'D' ? 'Unlikely' : 'Certainly Not'}</label>
                   </div>
                 ))}
               </div>
