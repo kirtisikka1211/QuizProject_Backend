@@ -227,7 +227,7 @@ const Questionpage = () => {
                     onClick={handleSubmit}
                     disabled={isContinueDisabled}
                   >
-                    Submit
+                    Next
                   </Button>
                 )}
               </div>

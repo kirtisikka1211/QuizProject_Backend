@@ -18,7 +18,7 @@ const Chat = ({ text, resetHint }) => {
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
       setShowCursor(true);
-    }, 5000);
+    }, 2000);
 
     return () => {
       clearTimeout(loadingTimeout);
