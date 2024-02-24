@@ -131,7 +131,7 @@ const Questionpage = () => {
       .catch((error) => {
         console.error("Error while making the Axios request:", error);
       });
-    navigate("/thankyou");
+      navigate(`/feedback?roll_no=${roll_no}`);
   };
 
   return (
