@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const useTimer = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(2400);
+  const [timeLeft, setTimeLeft] = useState(5400);
 
   useEffect(() => {
     if (timeLeft <= 0) navigate("/thankyou");
