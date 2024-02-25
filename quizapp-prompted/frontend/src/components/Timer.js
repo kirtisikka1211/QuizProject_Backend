@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 const useTimer = () => {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState(5400); 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const roll_no = queryParams.get("roll_no");
 
   useEffect(() => {
-    if (timeLeft <= 0) navigate("/thankyou");
+    if (timeLeft <= 0) navigate(`/feedback?roll_no=${roll_no}`);
     const timeout = setTimeout(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
