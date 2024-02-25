@@ -152,12 +152,12 @@ const BorderForm = () => {
                 type="radio"
                 id="gender-x"
                 name="gender"
-                value="Do not wish to specify"
-                checked={formData.gender === "Do not wish to specify"}
+                value="Other"
+                checked={formData.gender === "Other"}
                 onChange={handleChange}
                 style={{ marginRight: "10px" }}
               />
-              <span style={{ color: "gray" }}>Do not wish to specify</span>
+              <span style={{ color: "gray" }}>Other</span>
             </label>
           </div>
         </div>
