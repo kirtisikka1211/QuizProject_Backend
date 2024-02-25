@@ -51,7 +51,7 @@ const Welcome = () => {
             </div>
             <div className="flex justify-center">
               <Button
-                className="text-white bg-blue-texts rounded-full p-4 mb-10"
+                className="text-white bg-blue-texts rounded-full p-4 mb-10 text-sm"
                 onClick={handleStart}
               >
                 Get Started

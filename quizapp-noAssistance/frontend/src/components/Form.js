@@ -16,13 +16,21 @@ const BorderForm = () => {
     uni:"",
     cgpa:"",
     device_dimensions:"",
+    consent: false
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.type === 'checkbox') {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.checked,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   formData.device_dimensions=`${windowWidth.current},${windowHeight.current}`;
@@ -112,16 +120,46 @@ const BorderForm = () => {
           >
             Gender
           </label>
-          <input
-            type="text"
-            id="gender"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            className="border border-blue-texts p-2.5 rounded-md w-full"
-            placeholder="enter your gender"
-            required
-          />
+          <div
+             className="border border-blue-texts p-2.5 rounded-md w-full flex flex-col items-start gap-2" 
+          >
+            <label htmlFor="gender-male">
+              <input
+                type="radio"
+                id="gender-male"
+                name="gender"
+                value="male"
+                checked={formData.gender === "male"}
+                onChange={handleChange}
+                style={{ marginRight: "10px" }}
+              />
+              <span style={{ color: "gray" }}>Male</span>
+            </label>
+            <label htmlFor="gender-female">
+              <input
+                type="radio"
+                id="gender-female"
+                name="gender"
+                value="female"
+                checked={formData.gender === "female"}
+                onChange={handleChange}
+                style={{ marginRight: "10px" }}
+              />
+              <span style={{ color: "gray" }}>Female</span>
+            </label>
+            <label htmlFor="gender-x">
+              <input
+                type="radio"
+                id="gender-x"
+                name="gender"
+                value="Do not wish to specify"
+                checked={formData.gender === "Do not wish to specify"}
+                onChange={handleChange}
+                style={{ marginRight: "10px" }}
+              />
+              <span style={{ color: "gray" }}>Do not wish to specify</span>
+            </label>
+          </div>
         </div>
         <div className="mb-7">
           <label
@@ -131,7 +169,7 @@ const BorderForm = () => {
             Age
           </label>
           <input
-            type="text"
+            type="number"
             id="age"
             name="age"
             value={formData.age}
@@ -139,6 +177,7 @@ const BorderForm = () => {
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your age"
             required
+            min={0}
           />
         </div>
         <div className="mb-7">
@@ -177,15 +216,16 @@ const BorderForm = () => {
             required
           />
         </div>
-        <div className="mb-20">
+        <div className="mb-7">
           <label
             htmlFor="cgpa"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            cgpa
+            CGPA
           </label>
           <input
-            type="text"
+            type="number"
+            step={0.01}
             id="cgpa"
             name="cgpa"
             value={formData.cgpa}
@@ -193,8 +233,26 @@ const BorderForm = () => {
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your cgpa"
             required
+            min={0}
+            pattern="^\d+(\.\d{1,2})?$|^\d$"
+            max={10}
           />
-        </div>        
+        </div>   
+        <div className="flex items-center mb-2">
+          <input
+            type="checkbox"
+            id="consent"
+            name="consent"
+            checked={formData.consent}
+            onChange={handleChange}
+            className="mr-2 "
+            style={{marginBottom:"8.7rem"}}
+            required
+          />
+          <label htmlFor="consent" className="text-xs text-blue-texts mb-7">
+          We take the protection of your privacy seriously and adhere to strict guidelines to maintain anonymity. No individual-level data will ever be shared outside our research team, ensuring complete confidentiality of all information provided by you. By participating in this survey, you agree to provide honest and accurate responses. Your participation is voluntary, and you may withdraw at any time without penalty. By submitting your completed survey, you are giving us permission to use your responses for research purposes only.
+          </label>
+        </div>       
         <button
           type="submit"
           className="text-white mb-10 bg-blue-texts hover:bg-[#4999c4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full py-2.5 text-center"

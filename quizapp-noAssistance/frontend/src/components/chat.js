@@ -26,7 +26,7 @@ const Chat = ({ text }) => {
         } else {
           setShowCursor(false);
         }
-      }, 35);
+      }, 15);
 
       return () => {
         clearTimeout(typingTimeout);
