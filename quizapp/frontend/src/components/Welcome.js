@@ -33,59 +33,55 @@ const Welcome = () => {
   };
 
   return (
-    <div>
-      <div className="lg:flex lg:flex-row">
-        <div className="lg:w-2/3">
-          <div className="h-screen flex flex-col justify-center items-center text-blue-texts font-thefont gap-y-3 p-8">
-            <div>
-              <p className="flex justify-center text-7xl">
-                Welcome to Amrita Summer Internship Selection process!
-              </p>
-              <p className="pt-20 px-10 flex text-center text-3xl">
-                We welcome you to the selection process for Amrita Summer
-                Internship Program. This assessment will enable us to test
-                everyone’s knowledge and recruit the eligible candidates for the
-                internship. Before you dive into the assessment, please do
-                follow the dos and don’ts of the quiz. 
-              </p>
-              <p className="text-center text-3xl pb-10">All the best!</p>
-            </div>
-            <div className="flex justify-center">
-              <Button
-                className="text-white bg-blue-texts rounded-full p-4 mb-10 text-sm"
-                onClick={handleStart}
-              >
-                Get Started
-              </Button>
-            </div>
+    <div className="lg:flex lg:flex-row">
+      <div className="lg:w-2/3">
+        <div className="h-full flex flex-col justify-center items-center text-blue-texts font-thefont gap-y-3 p-8 lg:p-16">
+          <div>
+            <p className="text-center text-3xl lg:text-7xl">
+              Welcome to Amrita Summer Internship Selection process!
+            </p>
+            <p className="pt-10 px-6 lg:px-10 text-center text-xl lg:text-3xl">
+              We welcome you to the selection process for Amrita Summer
+              Internship Program. This assessment will enable us to test
+              everyone’s knowledge and recruit the eligible candidates for the
+              internship. Before you dive into the assessment, please do follow
+              the dos and don’ts of the quiz.
+            </p>
+            <p className="text-center text-xl lg:text-3xl pb-10">
+              All the best!
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <Button
+              className="text-white bg-blue-texts rounded-full p-4 mb-10 text-base lg:text-sm"
+              onClick={handleStart}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
-        <div className="lg:w-1/3 bg-right-blue lg:order-first">
-          <div className="flex flex-col justify-center p-8 lg:p-20 py-12 lg:py-40 font-thefont text-white text-lg lg:text-4xl">
-            <div className="mb-8">
-              <h2 className="text-3xl lg:text-5xl font-bold mb-4">
-                Do's and Don'ts
-              </h2>
-              <div className="mb-4">
-                <h3 className="text-xl lg:text-2xl font-semibold mb-2">
-                  Do's:
-                </h3>
-                <ul className="list-disc pl-4">
-                  <li>Read Questions Carefully</li>
-                  <li>Answer Every Question</li>
-                  <li>Manage Your Time</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl lg:text-2xl font-semibold mb-2">
-                  Don'ts:
-                </h3>
-                <ul className="list-disc pl-4">
-                  <li>Don't Cheat</li>
-                  <li>Don't Discuss Answers During the Exam</li>
-                  <li>Don't Leave Questions Blank</li>
-                </ul>
-              </div>
+      </div>
+      <div className="lg:w-1/3 bg-right-blue lg:order-first lg:h-screen">
+        <div className="flex flex-col justify-center p-8 lg:p-16 py-12 lg:py-40 font-thefont text-white text-lg lg:text-2xl">
+          <div className="mb-8">
+            <h2 className="text-xl lg:text-5xl font-bold mb-4">
+              Do's and Don'ts
+            </h2>
+            <div className="mb-4">
+              <h3 className="text-lg lg:text-xl font-semibold mb-2">Do's:</h3>
+              <ul className="list-disc pl-4">
+                <li>Read Questions Carefully</li>
+                <li>Answer Every Question</li>
+                <li>Manage Your Time</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg lg:text-xl font-semibold mb-2">Don'ts:</h3>
+              <ul className="list-disc pl-4">
+                <li>Don't Cheat</li>
+                <li>Don't Discuss Answers During the Exam</li>
+                <li>Don't Leave Questions Blank</li>
+              </ul>
             </div>
           </div>
         </div>
