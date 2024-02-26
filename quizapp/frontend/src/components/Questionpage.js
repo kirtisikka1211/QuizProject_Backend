@@ -39,7 +39,6 @@ const Questionpage = () => {
         }
       } catch (error) {
         console.error("err", error);
-        fetchData();
       }
     };
   
