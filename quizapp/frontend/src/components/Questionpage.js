@@ -35,11 +35,14 @@ const Questionpage = () => {
           setQuestions(shuffledQuestions);
         } else {
           console.error("F.");
+          fetchData();
         }
       } catch (error) {
         console.error("err", error);
+        fetchData();
       }
     };
+  
     fetchData();
   }, []);
   const question = questions[currentQuestionIndex];
