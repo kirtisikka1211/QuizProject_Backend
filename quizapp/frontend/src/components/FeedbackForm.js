@@ -71,7 +71,7 @@ const FeedbackForm = () => {
         const feedbackData = {
           user: roll_no,
           action: selectedOptions[question.id],
-          set: 1,
+          set: 2,
           time: curtime,
           page: `Question ${i + 1}`,
         };
@@ -104,31 +104,32 @@ const FeedbackForm = () => {
                 Q.{questionCounter + index}. {question.questions}
               </p>
               <div className="space-y-2">
-                {options.map((option, optionIndex) => (
-                  <div key={option} className="flex items-center">
-                    <input
-                      type="radio"
-                      checked={
-                        selectedOptions[question.id] === options[optionIndex]
-                      }
-                      onChange={() =>
-                        handleOptionSelect(question.id, optionIndex)
-                      }
-                      className="mr-2"
-                    />
-                    <label>
-                      {option === "A"
-                        ? question.option1
-                        : option === "B"
-                        ? question.option2
-                        : option === "C"
-                        ? question.option3
-                        : option === "D"
-                        ? question.option4
-                        : question.option5}
-                    </label>
-                  </div>
-                ))}
+                {options.map(
+                  (option, optionIndex) =>
+                    question[`option${optionIndex + 1}`] !== null && (
+                      <div key={option} className="flex items-center">
+                        <input
+                          type="radio"
+                          checked={selectedOptions[question.id] === option}
+                          onChange={() =>
+                            handleOptionSelect(question.id, optionIndex)
+                          }
+                          className="mr-2"
+                        />
+                        <label>
+                          {option === "A"
+                            ? question.option1
+                            : option === "B"
+                            ? question.option2
+                            : option === "C"
+                            ? question.option3
+                            : option === "D"
+                            ? question.option4
+                            : question.option5}
+                        </label>
+                      </div>
+                    )
+                )}
               </div>
             </div>
           ))}

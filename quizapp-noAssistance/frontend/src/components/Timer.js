@@ -3,7 +3,7 @@ import { useNavigate,useLocation } from "react-router-dom";
 
 const useTimer = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(2700); 
+  const [timeLeft, setTimeLeft] = useState(1500); 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const roll_no = queryParams.get("roll_no");

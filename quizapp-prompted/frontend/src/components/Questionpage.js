@@ -33,7 +33,7 @@ const Questionpage = () => {
           Array.isArray(response.data) &&
           response.data.length > 0
         ) {
-          const shuffledQuestions = [...response.data].sort(() => Math.random() - 0.5);
+          const shuffledQuestions = response.data;
           setQuestions(shuffledQuestions);
         } else {
           console.error("F.");
