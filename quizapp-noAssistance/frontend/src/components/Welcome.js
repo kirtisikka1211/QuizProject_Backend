@@ -38,14 +38,12 @@ const Welcome = () => {
         <div className="h-full flex flex-col justify-center items-center text-blue-texts font-thefont gap-y-3 p-8 lg:p-16">
           <div>
             <p className="text-center text-3xl lg:text-7xl">
-              Welcome to Amrita Summer Internship Selection process!
+              Welcome!
             </p>
             <p className="pt-10 px-6 lg:px-10 text-center text-xl lg:text-3xl">
-              We welcome you to the selection process for Amrita Summer
-              Internship Program. This assessment will enable us to test
-              everyone’s knowledge and recruit the eligible candidates for the
-              internship. Before you dive into the assessment, please do follow
-              the dos and don’ts of the quiz.
+            Welcome to our study! We appreciate your participation in this quiz, which will help us gather valuable insights. 
+            Before we begin, please take a moment to relax, focus your mind, and prepare to give your best effort. 
+            Remember, there are no right or wrong answers, we're simply interested in your honest responses.
             </p>
             <p className="text-center text-xl lg:text-3xl pb-10">
               All the best!
