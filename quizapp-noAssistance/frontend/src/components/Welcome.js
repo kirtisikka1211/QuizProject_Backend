@@ -40,11 +40,12 @@ const Welcome = () => {
             <p className="text-center text-3xl lg:text-7xl">
               Welcome!
             </p>
-            <p className="pt-10 px-6 lg:px-10 text-center text-xl lg:text-3xl">
+            <p className="pt-10 px-6 lg:px-10 text-left text-xl lg:text-3xl">
             Welcome to our study! We appreciate your participation in this quiz, which will help us gather valuable insights. 
             Before we begin, please take a moment to relax, focus your mind, and prepare to give your best effort. 
-            Remember, there are no right or wrong answers, we're simply interested in your honest responses.
+            Remember, just do your best!
             </p>
+            <br/>
             <p className="text-center text-xl lg:text-3xl pb-10">
               All the best!
             </p>
