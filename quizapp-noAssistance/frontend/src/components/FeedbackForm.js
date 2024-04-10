@@ -99,7 +99,6 @@ const FeedbackForm = () => {
         <div className="flex flex-col p-4 space-y-7 ">
           {questions.map((question, index) => (
             <div key={question.id}>
-              {/* {console.log(question)} */}
               <p>
                 Q.{questionCounter + index}. {question.questions}
               </p>
@@ -110,13 +109,14 @@ const FeedbackForm = () => {
                       <div key={option} className="flex items-center">
                         <input
                           type="radio"
+                          id={`option_${option}_${question.id}`}
                           checked={selectedOptions[question.id] === option}
                           onChange={() =>
                             handleOptionSelect(question.id, optionIndex)
                           }
                           className="mr-2"
                         />
-                        <label>
+                        <label htmlFor={`option_${option}_${question.id}`}>
                           {option === "A"
                             ? question.option1
                             : option === "B"
