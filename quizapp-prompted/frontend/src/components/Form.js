@@ -10,17 +10,17 @@ const BorderForm = () => {
     roll_no: "",
     name: "",
     email: "",
-    gender: "",
-    age: "",
-    degree: "",
-    uni: "",
-    cgpa: "",
-    device_dimensions: "",
-    consent: false,
+    gender:"",
+    age:"",
+    degree:"",
+    uni:"",
+    cgpa:"",
+    device_dimensions:"",
+    consent: false
   });
 
   const handleChange = (e) => {
-    if (e.target.type === "checkbox") {
+    if (e.target.type === 'checkbox') {
       setFormData({
         ...formData,
         [e.target.name]: e.target.checked,
@@ -33,7 +33,7 @@ const BorderForm = () => {
     }
   };
 
-  formData.device_dimensions = `${windowWidth.current},${windowHeight.current}`;
+  formData.device_dimensions=`${windowWidth.current},${windowHeight.current}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +82,7 @@ const BorderForm = () => {
             htmlFor="roll_no"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Roll Number
+            Roll Number (if you are a student)
           </label>
           <input
             type="text"
@@ -92,7 +92,6 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your roll number"
-            required
           />
         </div>
         <div className="mb-7">
@@ -100,7 +99,7 @@ const BorderForm = () => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Email
+            Email (for follow-up regarding the study)
           </label>
           <input
             type="email"
@@ -108,7 +107,7 @@ const BorderForm = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="border border-blue-texts p-2.5 rounded-md w-full max-w-md"
+            className="border border-blue-texts p-2.5 rounded-md w-full max-w-md" 
             placeholder="am.en.u4cse22001@am.students.amrita.edu"
             required
           />
@@ -161,7 +160,6 @@ const BorderForm = () => {
             </label>
           </div>
         </div>
-
         <div className="mb-7">
           <label
             htmlFor="age"
@@ -186,7 +184,7 @@ const BorderForm = () => {
             htmlFor="degree"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Degree
+            Highest Qualification
           </label>
           <input
             type="text"
@@ -201,28 +199,10 @@ const BorderForm = () => {
         </div>
         <div className="mb-7">
           <label
-            htmlFor="uni"
-            className="block mb-2 text-sm font-medium text-blue-texts"
-          >
-            University
-          </label>
-          <input
-            type="text"
-            id="uni"
-            name="uni"
-            value={formData.uni}
-            onChange={handleChange}
-            className="border border-blue-texts p-2.5 rounded-md w-full"
-            placeholder="enter your University"
-            required
-          />
-        </div>
-        <div className="mb-7">
-          <label
             htmlFor="cgpa"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            CGPA
+            CGPA (Optional)
           </label>
           <input
             type="number"
@@ -233,12 +213,11 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your cgpa"
-            required
             min={0}
             pattern="^\d+(\.\d{1,2})?$|^\d$"
             max={10}
           />
-        </div>
+        </div>   
         <div className="flex items-center mb-2">
           <input
             type="checkbox"
@@ -247,20 +226,13 @@ const BorderForm = () => {
             checked={formData.consent}
             onChange={handleChange}
             className="mr-2 "
-            style={{ marginBottom: "8.7rem" }}
+            style={{marginBottom:"8.7rem"}}
             required
           />
           <label htmlFor="consent" className="text-xs text-blue-texts mb-7">
-            We take the protection of your privacy seriously and adhere to
-            strict guidelines to maintain anonymity. No individual-level data
-            will ever be shared outside our research team, ensuring complete
-            confidentiality of all information provided by you. By participating
-            in this survey, you agree to provide honest and accurate responses.
-            Your participation is voluntary, and you may withdraw at any time
-            without penalty. By submitting your completed survey, you are giving
-            us permission to use your responses for research purposes only.
+          We take the protection of your privacy seriously and adhere to strict guidelines to maintain anonymity. No individual-level data will ever be shared outside our research team, ensuring complete confidentiality of all information provided by you. By participating in this survey, you agree to provide honest and accurate responses. Your participation is voluntary, and you may withdraw at any time without penalty. By submitting your completed survey, you are giving us permission to use your responses for research purposes only.
           </label>
-        </div>
+        </div>             
         <button
           type="submit"
           className="text-white mb-10 bg-blue-texts hover:bg-[#4999c4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full py-2.5 text-center"

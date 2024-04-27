@@ -82,7 +82,7 @@ const BorderForm = () => {
             htmlFor="roll_no"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Roll Number
+            Roll Number (if you are a student)
           </label>
           <input
             type="text"
@@ -92,7 +92,6 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your roll number"
-            required
           />
         </div>
         <div className="mb-7">
@@ -100,7 +99,7 @@ const BorderForm = () => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Email
+            Email (for follow-up regarding the study)
           </label>
           <input
             type="email"
@@ -185,7 +184,7 @@ const BorderForm = () => {
             htmlFor="degree"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Degree
+            Highest Qualification
           </label>
           <input
             type="text"
@@ -200,28 +199,10 @@ const BorderForm = () => {
         </div>
         <div className="mb-7">
           <label
-            htmlFor="uni"
-            className="block mb-2 text-sm font-medium text-blue-texts"
-          >
-            University
-          </label>
-          <input
-            type="text"
-            id="uni"
-            name="uni"
-            value={formData.uni}
-            onChange={handleChange}
-            className="border border-blue-texts p-2.5 rounded-md w-full"
-            placeholder="enter your University"
-            required
-          />
-        </div>
-        <div className="mb-7">
-          <label
             htmlFor="cgpa"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            CGPA
+            CGPA (Optional)
           </label>
           <input
             type="number"
@@ -232,7 +213,6 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your cgpa"
-            required
             min={0}
             pattern="^\d+(\.\d{1,2})?$|^\d$"
             max={10}
@@ -252,7 +232,7 @@ const BorderForm = () => {
           <label htmlFor="consent" className="text-xs text-blue-texts mb-7">
           We take the protection of your privacy seriously and adhere to strict guidelines to maintain anonymity. No individual-level data will ever be shared outside our research team, ensuring complete confidentiality of all information provided by you. By participating in this survey, you agree to provide honest and accurate responses. Your participation is voluntary, and you may withdraw at any time without penalty. By submitting your completed survey, you are giving us permission to use your responses for research purposes only.
           </label>
-        </div>       
+        </div>             
         <button
           type="submit"
           className="text-white mb-10 bg-blue-texts hover:bg-[#4999c4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm w-full py-2.5 text-center"
