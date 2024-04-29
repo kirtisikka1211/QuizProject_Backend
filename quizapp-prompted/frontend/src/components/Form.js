@@ -82,7 +82,7 @@ const BorderForm = () => {
             htmlFor="roll_no"
             className="block mb-2 text-sm font-medium text-blue-texts"
           >
-            Roll Number (if you are a student)
+            Roll Number (if you are a student) or Unique Username/ID
           </label>
           <input
             type="text"
@@ -92,6 +92,7 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your roll number"
+            required
           />
         </div>
         <div className="mb-7">
@@ -194,6 +195,24 @@ const BorderForm = () => {
             onChange={handleChange}
             className="border border-blue-texts p-2.5 rounded-md w-full"
             placeholder="enter your degree"
+            required
+          />
+        </div>
+        <div className="mb-7">
+          <label
+            htmlFor="uni"
+            className="block mb-2 text-sm font-medium text-blue-texts"
+          >
+            University
+          </label>
+          <input
+            type="text"
+            id="uni"
+            name="uni"
+            value={formData.uni}
+            onChange={handleChange}
+            className="border border-blue-texts p-2.5 rounded-md w-full"
+            placeholder="enter your University"
             required
           />
         </div>
